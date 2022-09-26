@@ -1,4 +1,5 @@
-# A JS / Canvas workshop rövid összefoglalója
+# avoid
+> A JS / Canvas workshop rövid összefoglalója
 ## Mi az a JavaScript?
 
  + Egy magasszintű, gyengén típusos, értelmezett nyelv. 
@@ -63,4 +64,3 @@ A következő kódrészletet célszerű alkalmazni.
 
 ## A végére
 Ezekről a témákról rengeteg kifejezetten jó forrás található az interneten. A JavaScriptről is írtak már egy pár könyvet. Ha valakit érdekel a téma, akkor minden lehetősége megvan, hogy elmélyedjen benne. Ez a fél oldal talán egy elfogadható kiindulási pontot ad, vagy ha azt nem, legalább egy kis plusz motivációt, hogy még többen ismerkedjenek meg a webnek ezen részével is.
-# avoid
