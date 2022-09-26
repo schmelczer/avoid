@@ -71,7 +71,7 @@ class Game {
         new Circle(
           [
             Math.random() > 0.5 ? -10 : 1.05 * canvasHandler.width,
-            Math.random() * canvasHandler.height
+            Math.random() * canvasHandler.height,
           ],
           "#F15156",
           canvasHandler.unitToPx(0.0001),
@@ -108,7 +108,7 @@ class Game {
   }
   showEndScreen() {
     document.getElementById("endText").style.display = "block";
-    document.getElementById("endScore").innerHTML = `Pontszámod: ${this.score}`;
+    document.getElementById("endScore").innerHTML = `Your score: ${this.score}`;
     this.menuBox.display = "flex";
     this.isActive = false;
   }
