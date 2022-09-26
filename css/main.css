@@ -17,7 +17,7 @@ canvas,
 h1,
 p,
 button {
-  font: 400 5rem "Raleway", cursive;
+  font: 400 3rem "Raleway", cursive;
 }
 
 canvas,
@@ -28,8 +28,8 @@ button {
 
 p,
 button {
-  font-size: 1.8rem;
-  margin-top: 2rem;
+  font-size: 1.5rem;
+  margin-top: 1rem;
 }
 
 #menuBox {
