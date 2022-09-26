@@ -1,4 +1,4 @@
-const enemySpawnFrequency = 2.5;
+const enemySpawnFrequency = 4.5;
 
 const canvasHandler = new CanvasHandler("canvas");
 const inputHandler = new InputHandler("canvas");
