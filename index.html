@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Játék</title>
+
+    <meta name="theme-color" content="#A5402D" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <div id="menuBox">
+      <div class="box">
+        <div id="startText">
+          <h1>Kerüld ki</h1>
+          <p>
+            a piros köröket a kurzorod (telefonon az ujjad) mozgatásával. Sok
+            sikert hozzá!
+          </p>
+        </div>
+        <div id="endText">
+          <h1>Játék vége</h1>
+          <p id="endScore"></p>
+        </div>
+        <button id="startButton">Indítás</button>
+      </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="js/CanvasHandler.js"></script>
+    <script src="js/InputHandler.js"></script>
+    <script src="js/vec2.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
