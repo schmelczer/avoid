@@ -11,8 +11,8 @@ class CanvasHandler {
 
   resize() {
     const rect = this.canvas.getBoundingClientRect();
-    this.canvas.width = rect.width;
-    this.canvas.height = rect.height;
+    this.canvas.width = rect.width * window.devicePixelRatio;
+    this.canvas.height = rect.height * window.devicePixelRatio;
   }
 
   fillCanvas(color) {
@@ -22,7 +22,14 @@ class CanvasHandler {
 
   drawCircle([x, y], radius, color) {
     this.context.beginPath();
-    this.context.arc(x, y, radius, 0, 2 * Math.PI, false);
+    this.context.arc(
+      x * window.devicePixelRatio,
+      y * window.devicePixelRatio,
+      radius * window.devicePixelRatio,
+      0,
+      2 * Math.PI,
+      false
+    );
     this.context.fillStyle = color;
     this.context.fill();
   }
@@ -32,9 +39,9 @@ class CanvasHandler {
   }
 
   get width() {
-    return this.canvas.width;
+    return this.canvas.width / window.devicePixelRatio;
   }
   get height() {
-    return this.canvas.height;
+    return this.canvas.height / window.devicePixelRatio;
   }
 }
