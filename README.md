@@ -7,7 +7,7 @@
  + Változatos módon tudja befolyásolni az oldal állapotát.
     + A háttérben aszinkron módon képes szerverekkel kommunikálni ([AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX))
     + A weboldal elemeit módosítani ([DOM manipulation](https://developer.mozilla.org/en-US/docs/Glossary/DOM))
-    + Egy csomó  HTML5-ös API-val kommunikálni:
+    + Egy csomó HTML5-ös API-val kommunikálni:
         + [File](https://developer.mozilla.org/hu/docs/Web/API/File)
         + [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
         + **[Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)**

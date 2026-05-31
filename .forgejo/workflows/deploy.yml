@@ -1,0 +1,29 @@
+---
+name: Check & deploy
+
+'on':
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+  workflow_dispatch:
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: docker
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy files to nginx pages mount
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          apt update && apt install -y rsync
+          deploy_dir="$(mktemp -d)"
+          cp -R index.html css js "$deploy_dir"/
+          mkdir -p /pages/avoid
+          rsync -a --delete "$deploy_dir"/ /pages/avoid/
