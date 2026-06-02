@@ -25,5 +25,4 @@ jobs:
           apt update && apt install -y rsync
           deploy_dir="$(mktemp -d)"
           cp -R index.html css js "$deploy_dir"/
-          mkdir -p /pages/avoid
-          rsync -a --delete "$deploy_dir"/ /pages/avoid/
+          rsync -a --delete --mkpath --chmod=ugo=rwx "$deploy_dir"/ /pages/avoid/
