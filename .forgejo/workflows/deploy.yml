@@ -19,10 +19,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Copy files to nginx pages mount
+      - name: Stage static files
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          apt update && apt install -y rsync
-          deploy_dir="$(mktemp -d)"
-          cp -R index.html css js "$deploy_dir"/
-          rsync -a --delete --mkpath --chmod=ugo=rwx "$deploy_dir"/ /pages/avoid/
+          mkdir -p _site
+          cp -R index.html css js _site/
+
+      - name: Deploy to nginx pages mount
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: http://forgejo:3000/andras/ci-actions/deploy-pages@main
+        with:
+          source: _site
+          target: avoid
