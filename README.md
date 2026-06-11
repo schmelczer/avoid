@@ -2,7 +2,7 @@
 > A JS / Canvas workshop rövid összefoglalója
 ## Mi az a JavaScript?
 
- + Egy magasszintű, gyengén típusos, értelmezett nyelv. 
+ + Egy magas szintű, gyengén típusos, értelmezett nyelv. 
  + A "böngészőben fut".
  + Változatos módon tudja befolyásolni az oldal állapotát.
     + A háttérben aszinkron módon képes szerverekkel kommunikálni ([AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX))
@@ -12,7 +12,7 @@
         + [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
         + **[Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)**
         + etc.
-+ És természetesen minden olyan dologra képes, ami egy magasszintű nyelvtől elvárható.
++ És természetesen minden olyan dologra képes, ami egy magas szintű nyelvtől elvárható.
 ### [Kristóf nagyon jó JavaScript összefoglalója](https://github.com/kripod/schdesign-web-workshop/blob/master/notes/js.md)
 ### Egy nem annyira jó, viszont annál tömörebb összefoglaló
 + A konzolra kiírni (böngészőben **F12**-vel megnyitható) a ```console.log("szöveg");``` hívással lehet.
