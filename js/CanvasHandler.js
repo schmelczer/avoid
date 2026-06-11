@@ -38,6 +38,14 @@ class CanvasHandler {
     return unit * Math.sqrt(this.width * this.height);
   }
 
+  clientToCanvas(clientX, clientY) {
+    const rect = this.canvas.getBoundingClientRect();
+    return [
+      ((clientX - rect.left) / rect.width) * this.width,
+      ((clientY - rect.top) / rect.height) * this.height,
+    ];
+  }
+
   get width() {
     return this.canvas.width / window.devicePixelRatio;
   }
