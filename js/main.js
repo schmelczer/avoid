@@ -1,7 +1,7 @@
 const enemySpawnFrequency = 4.5;
 
 const canvasHandler = new CanvasHandler("canvas");
-const inputHandler = new InputHandler("canvas");
+const inputHandler = new InputHandler(canvasHandler);
 
 let game;
 function newGame() {
@@ -31,7 +31,10 @@ class Circle {
     canvasHandler.drawCircle(this.position, this.size, this.color);
   }
   isTouching(other) {
-    return magnitude(subtract(this.position, other.position)) < 2 * this.size;
+    return (
+      magnitude(subtract(this.position, other.position)) <
+      this.size + other.size
+    );
   }
 }
 
@@ -47,7 +50,7 @@ class Game {
 
     this.circleHolder = [this.player];
     this.spawnInterval = 1000 / enemySpawnFrequency;
-    this.previousSpawn = this.previousTimestamp = 0;
+    this.previousSpawn = this.previousTime = 0;
     this.score = 0;
 
     this.menuBox = document.getElementById("menuBox").style;
@@ -55,14 +58,15 @@ class Game {
       "none";
 
     this.isActive = true;
-    window.requestAnimationFrame(this.nextFrame.bind(this));
+    this.boundNextFrame = this.nextFrame.bind(this);
+    window.requestAnimationFrame(this.boundNextFrame);
   }
   nextFrame(timestamp) {
     if (this.isActive) {
       canvasHandler.fillCanvas("rgba(165, 64, 45, 0.1)");
       this.spawnEnemyIfNeeded(timestamp);
       this.moveCircles(timestamp);
-      window.requestAnimationFrame(this.nextFrame.bind(this));
+      window.requestAnimationFrame(this.boundNextFrame);
     }
   }
   spawnEnemyIfNeeded(timestamp) {
@@ -86,19 +90,26 @@ class Game {
   }
   moveCircles(timestamp) {
     const deltaTime = this.getDeltaTime(timestamp);
+    const collided = new Set();
     for (let i = 0; i < this.circleHolder.length; i++) {
       this.circleHolder[i].move(deltaTime);
       this.circleHolder[i].draw(canvasHandler);
 
       for (let j = i + 1; j < this.circleHolder.length; j++) {
         if (this.circleHolder[i].isTouching(this.circleHolder[j])) {
-          if (this.circleHolder[i] == this.player) this.showEndScreen();
-          else {
-            this.circleHolder.splice(i, 1);
-            this.circleHolder.splice(j - 1, 1);
+          if (this.circleHolder[i] === this.player) {
+            this.showEndScreen();
+            return;
           }
+          collided.add(i).add(j);
         }
       }
+    }
+
+    if (collided.size > 0) {
+      this.circleHolder = this.circleHolder.filter(
+        (_, index) => !collided.has(index)
+      );
     }
   }
   getDeltaTime(timestamp) {
