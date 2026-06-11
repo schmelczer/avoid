@@ -1,4 +1,5 @@
-const enemySpawnFrequency = 4.5;
+const enemySpawnFrequencyPerSecond = 4.5;
+const maxDeltaTimeInMs = 50;
 
 const canvasHandler = new CanvasHandler("canvas");
 const inputHandler = new InputHandler(canvasHandler);
@@ -27,9 +28,11 @@ class Circle {
       this.position = add(this.position, limit(deltaPosition, maxDistance));
     }
   }
+
   draw(canvasHandler) {
     canvasHandler.drawCircle(this.position, this.size, this.color);
   }
+
   isTouching(other) {
     return (
       magnitude(subtract(this.position, other.position)) <
@@ -49,7 +52,7 @@ class Game {
     );
 
     this.circleHolder = [this.player];
-    this.spawnInterval = 1000 / enemySpawnFrequency;
+    this.spawnInterval = 1000 / enemySpawnFrequencyPerSecond;
     this.previousSpawn = this.previousTime = 0;
     this.score = 0;
 
@@ -61,6 +64,7 @@ class Game {
     this.boundNextFrame = this.nextFrame.bind(this);
     window.requestAnimationFrame(this.boundNextFrame);
   }
+
   nextFrame(timestamp) {
     if (this.isActive) {
       canvasHandler.fillCanvas("rgba(165, 64, 45, 0.1)");
@@ -69,6 +73,7 @@ class Game {
       window.requestAnimationFrame(this.boundNextFrame);
     }
   }
+
   spawnEnemyIfNeeded(timestamp) {
     if (timestamp - this.previousSpawn > this.spawnInterval) {
       this.circleHolder.push(
@@ -88,6 +93,7 @@ class Game {
       this.score++;
     }
   }
+
   moveCircles(timestamp) {
     const deltaTime = this.getDeltaTime(timestamp);
     const collided = new Set();
@@ -112,14 +118,17 @@ class Game {
       );
     }
   }
+
   getDeltaTime(timestamp) {
     const tempPreviousTime = this.previousTime;
     this.previousTime = timestamp;
-    return timestamp - tempPreviousTime;
+    return Math.min(timestamp - tempPreviousTime, maxDeltaTimeInMs);
   }
+
   showEndScreen() {
     document.getElementById("endText").style.display = "block";
     document.getElementById("endScore").innerHTML = `Your score: ${this.score}`;
+    document.getElementById("startButton").textContent = "Play again";
     this.menuBox.display = "flex";
     this.isActive = false;
   }
