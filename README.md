@@ -51,9 +51,18 @@ const context = canvas.getContext('2d');
 
 ## Animáció
 A következő kódrészletet célszerű alkalmazni.
+
+A [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame) callbackjének `timestamp` paramétere az ablak időorigójához viszonyított időbélyeg, ezredmásodpercben. A játék futásidejét az első képkocka időbélyegének levonásával kapjuk meg.
+
 ```javascript
+    let startTimestamp;
+
     function nextFrame(timestamp) {
-        console.log(`Ennyi ideje fut a játék: ${timestamp}`)
+        if (startTimestamp === undefined) {
+            startTimestamp = timestamp;
+        }
+        const elapsed = timestamp - startTimestamp;
+        console.log(`Ennyi ideje fut a játék: ${elapsed} ms`);
         
         //animáció logikája
         
