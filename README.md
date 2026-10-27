@@ -21,7 +21,9 @@
     + Előbbi változó deklarálásra jó, utóbbi konstans inicializáláshoz.
     + *Még sok helyen lehet látni a ```var``` kulcsszót, ezt ne használjuk.*
 + Vannak ```class```-ok.
-    > Nincsenek attribútumok, láthatóság.
+    + Lehetnek [publikus példánymezőik és statikus mezőik](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields), például `nev = "";`, illetve `static darab = 0;` az osztály törzsében.
+    + A [`#` előtagú privát mezők és metódusok](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_elements) csak az őket deklaráló osztályon belül érhetők el, például `#ertek = 0;`.
+    + A C#/Java nyelvektől eltérően nincsenek `public`, `protected`, `private` láthatósági módosítók; a `#` nélküli mezők és metódusok publikusak.
 + Van garbage collector.
 + A ```this``` bonyolult, de majd mindenki ráérez. [Bővebb infó róla](https://zellwk.com/blog/this).
 + Ezenfelül google, és előbb-utóbb mindent meg lehet tanulni.
@@ -42,7 +44,8 @@ const canvas = document.getElementById('myCanvas');
 const context = canvas.getContext('2d');
 ```
 + Adjunk meg egy rajzoló színt: ```context.fillStyle = "rgba(255, 255, 0, 0.5)";```
-+ Rajzoljunk egy téglalapot: ```context.fillRect(x0, y0, x1, y1);```
++ Rajzoljunk egy téglalapot: ```context.fillRect(x, y, width, height);```
+    + Az `x` és `y` a kezdőpont koordinátái, a `width` a szélesség, a `height` a magasság. [Bővebb infó: `fillRect()`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillRect).
 
 **További hasznos és szükséges információk: [MDN Canvas tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)** 
 
